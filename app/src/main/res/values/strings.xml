@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ApiMeteo</string>
+    <string name="search">Cerca</string>
+    <string name="search_placeholder">Inserire nome città...</string>
+    <string name="iconUrl">http://openweathermap.org/img/w/</string>
+    <string name="myWeatherKey">1f8a402dae8fd33dbbf9879437ec9d1e</string>
+    <string name="myAPI">http://api.openweathermap.org/data/2.5/weather</string>
+    <string name="noCity">INSERISCI UNA CITTÀ.</string>
+    <string name="cityNotFound">QUESTA CITTÀ NON ESISTE.</string>
+
+<!-- Traduzioni stato meteo  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <string name="A">Cielo sereno</string>
+    <string name="B">Nuvoloso</string>
+    <string name="C">Nubi sparse</string>
+    <string name="D">Molto nuvoloso</string>
+    <string name="E">Acquazzone</string>
+    <string name="F">Pioggia</string>
+    <string name="G">Temporale</string>
+    <string name="H">Neve</string>
+    <string name="I">Nebbia</string>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</resources>
