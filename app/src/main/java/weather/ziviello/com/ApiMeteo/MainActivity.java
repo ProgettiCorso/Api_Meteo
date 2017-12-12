@@ -5,23 +5,19 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
-
     RequestHttp requestHttp;
-    EditText etNameCity;
+    AutoCompleteTextView acNameCity;
     TextView tvTitle;
     TextView tvNameCity;
     TextView tvDescription;
@@ -36,20 +32,21 @@ public class MainActivity extends AppCompatActivity {
     JSONObject JSON_ChildNode;
     JSONArray JSON_RisultatoArray;
     JSONObject JSON_RisultatoObj;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        etNameCity = findViewById(R.id.etNameCity);
-        etNameCity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        acNameCity = findViewById(R.id.acNameCity);
+        acNameCity.setAdapter(new AutoCompleteGoogleMaps(getApplicationContext(), R.layout.activity_text));
+
+        acNameCity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    etNameCity.clearFocus();
+                    acNameCity.clearFocus();
                     InputMethodManager in = (InputMethodManager)getApplication().getSystemService(getApplication().INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(etNameCity.getWindowToken(), 0);
+                    in.hideSoftInputFromWindow(acNameCity.getWindowToken(), 0);
                     SearchCity();
                     return true;
                 }
@@ -74,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
         String cityName;
         String country;
         String controlIcon;
-        if (!etNameCity.getText().toString().equals("")) {
+        if (!acNameCity.getText().toString().equals("")) {
             try
             {
-                JSON_City.put("q", etNameCity.getText().toString());
-                JSON_City.put("appid", getResources().getString(R.string.myWeatherKey));
+                JSON_City.put("q", acNameCity.getText().toString().split(",")[0]);
+                JSON_City.put("appid", getResources().getString(R.string.myWeatherApiKey));
                 JSON_City.put("units", "metric");
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -92,31 +89,40 @@ public class MainActivity extends AppCompatActivity {
                     JSON_RisultatoArray = new JSONArray(JSON_Response.getString("weather"));
                     JSON_ChildNode = JSON_RisultatoArray.getJSONObject(0);
                     controlIcon = JSON_ChildNode.getString("icon");
-                    if (controlIcon.equals("01d") || controlIcon.equals("01n")) {
+                    if (controlIcon.equals("01d") || controlIcon.equals("01n"))
+                    {
                         tvDescription.setText(R.string.A);
                     }
-                    if (controlIcon.equals("02d") || controlIcon.equals("02n")) {
+                    if (controlIcon.equals("02d") || controlIcon.equals("02n"))
+                    {
                         tvDescription.setText(R.string.B);
                     }
-                    if (controlIcon.equals("03d") || controlIcon.equals("03n")) {
+                    if (controlIcon.equals("03d") || controlIcon.equals("03n"))
+                    {
                         tvDescription.setText(R.string.C);
                     }
-                    if (controlIcon.equals("04d") || controlIcon.equals("04n")) {
+                    if (controlIcon.equals("04d") || controlIcon.equals("04n"))
+                    {
                         tvDescription.setText(R.string.D);
                     }
-                    if (controlIcon.equals("09d") || controlIcon.equals("09n")) {
+                    if (controlIcon.equals("09d") || controlIcon.equals("09n"))
+                    {
                         tvDescription.setText(R.string.E);
                     }
-                    if (controlIcon.equals("10d") || controlIcon.equals("10n")) {
+                    if (controlIcon.equals("10d") || controlIcon.equals("10n"))
+                    {
                         tvDescription.setText(R.string.F);
                     }
-                    if (controlIcon.equals("11d") || controlIcon.equals("11n")) {
+                    if (controlIcon.equals("11d") || controlIcon.equals("11n"))
+                    {
                         tvDescription.setText(R.string.G);
                     }
-                    if (controlIcon.equals("13d") || controlIcon.equals("13n")) {
+                    if (controlIcon.equals("13d") || controlIcon.equals("13n"))
+                    {
                         tvDescription.setText(R.string.H);
                     }
-                    if (controlIcon.equals("50d") || controlIcon.equals("50n")) {
+                    if (controlIcon.equals("50d") || controlIcon.equals("50n"))
+                    {
                         tvDescription.setText(R.string.I);
                     }
                     String UrlIcon = getResources().getString(R.string.iconUrl) + (JSON_ChildNode.getString("icon")) + ".png";
@@ -143,12 +149,11 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            etNameCity.setText("");
+            acNameCity.setText("");
         } else
         {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.noCity), Toast.LENGTH_LONG).show();
         }
     }
-
 }
 

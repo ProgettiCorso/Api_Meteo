@@ -28,21 +28,23 @@
             tools:layout_editor_absoluteY="16dp" />
     </TableRow>
 
-    <EditText
-        android:id="@+id/etNameCity"
+    <AutoCompleteTextView
+        android:id="@+id/acNameCity"
         android:layout_width="276dp"
-        android:layout_height="46dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="23dp"
         android:layout_marginEnd="42dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="23dp"
         android:background="@drawable/rounded_edittext"
-        android:gravity="center"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/search_placeholder"
         android:imeOptions="actionSearch"
         android:inputType="textCapSentences"
         android:paddingLeft="10dip"
         android:paddingRight="10dip"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow" />
@@ -56,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNameCity">
+        app:layout_constraintTop_toBottomOf="@+id/acNameCity">
 
         <TableRow
             android:layout_width="match_parent"

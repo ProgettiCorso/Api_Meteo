@@ -3,7 +3,8 @@
     <string name="search">Cerca</string>
     <string name="search_placeholder">Inserire nome città...</string>
     <string name="iconUrl">http://openweathermap.org/img/w/</string>
-    <string name="myWeatherKey">1f8a402dae8fd33dbbf9879437ec9d1e</string>
+    <string name="myWeatherApiKey">1f8a402dae8fd33dbbf9879437ec9d1e</string>
+    <string name="myGoogleMapsApiKey">AIzaSyCHhVzC_Jq8miWRh_SzoraZzZdfTlzuk4k</string>
     <string name="myAPI">http://api.openweathermap.org/data/2.5/weather</string>
     <string name="noCity">INSERISCI UNA CITTÀ.</string>
     <string name="cityNotFound">QUESTA CITTÀ NON ESISTE.</string>

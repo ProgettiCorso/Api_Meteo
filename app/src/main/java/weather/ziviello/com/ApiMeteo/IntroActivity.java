@@ -10,14 +10,12 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public class IntroActivity extends AppCompatActivity {
-
     private static int TIME_OUT = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
